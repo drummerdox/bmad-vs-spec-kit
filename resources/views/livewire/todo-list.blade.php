@@ -1,14 +1,14 @@
 <div class="w-full max-w-2xl mx-auto">
     {{-- Welcome header --}}
     <header class="mb-8 text-center sm:text-left">
-        <div class="inline-flex items-center gap-2 rounded-full bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-700 ring-1 ring-indigo-100">
-            <span class="size-1.5 rounded-full bg-indigo-500"></span>
+        <div class="inline-flex items-center gap-2 rounded-full bg-primary-50 px-3 py-1 text-xs font-semibold text-primary-700 ring-1 ring-primary-100">
+            <span class="size-1.5 rounded-full bg-primary-500"></span>
             TALL Stack · Spec-Driven Demo
         </div>
-        <h1 class="mt-4 text-3xl font-bold tracking-tight text-gray-900">
+        <h1 class="mt-4 text-3xl font-bold tracking-tight text-ink">
             Hey, {{ auth()->user()->name }} 👋
         </h1>
-        <p class="mt-2 text-gray-500">
+        <p class="mt-2 text-muted">
             What would you like to get done today?
         </p>
     </header>
@@ -16,7 +16,7 @@
     {{-- Quick stats --}}
     <div class="mb-6 grid grid-cols-3 gap-3">
         @foreach ([
-            ['key' => 'all', 'label' => 'Total', 'icon' => '📋', 'color' => 'indigo'],
+            ['key' => 'all', 'label' => 'Total', 'icon' => '📋', 'color' => 'primary'],
             ['key' => 'active', 'label' => 'Active', 'icon' => '⚡', 'color' => 'sky'],
             ['key' => 'completed', 'label' => 'Done', 'icon' => '✅', 'color' => 'emerald'],
         ] as $stat)
@@ -24,14 +24,14 @@
                 type="button"
                 wire:click="setFilter('{{ $stat['key'] }}')"
                 @class([
-                    'rounded-2xl border p-4 text-left transition-all duration-200 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500/30',
-                    'border-indigo-300 bg-indigo-50 shadow-sm ring-2 ring-indigo-200' => $filter === $stat['key'],
-                    'border-gray-200 bg-white hover:border-gray-300' => $filter !== $stat['key'],
+                    'rounded-2xl border p-4 text-left motion-safe-transition hover:shadow-md focus:outline-none focus:ring-2 focus:ring-secondary-400/30',
+                    'border-secondary-400 bg-secondary-400/10 shadow-sm ring-2 ring-secondary-400/30' => $filter === $stat['key'],
+                    'border-gray-200 bg-surface-elevated hover:border-gray-300 hover:shadow-primary-glow' => $filter !== $stat['key'],
                 ])
             >
                 <span class="text-lg">{{ $stat['icon'] }}</span>
-                <p class="mt-1 text-2xl font-bold text-gray-900">{{ $counts[$stat['key']] }}</p>
-                <p class="text-xs font-medium text-gray-500">{{ $stat['label'] }}</p>
+                <p class="mt-1 text-2xl font-bold text-ink">{{ $counts[$stat['key']] }}</p>
+                <p class="text-xs font-medium text-muted">{{ $stat['label'] }}</p>
             </button>
         @endforeach
     </div>
@@ -39,9 +39,9 @@
     {{-- Add task form --}}
     <form
         wire:submit="addTodo"
-        class="mb-8 overflow-hidden rounded-2xl border border-indigo-100 bg-gradient-to-br from-white to-indigo-50/40 shadow-sm"
+        class="mb-8 overflow-hidden rounded-2xl border border-primary-100 bg-gradient-to-br from-white to-primary-50/40 shadow-sm"
     >
-        <div class="border-b border-indigo-100/80 bg-white/60 px-5 py-3">
+        <div class="border-b border-primary-100/80 bg-white/60 px-5 py-3">
             <h2 class="text-sm font-semibold text-gray-800">✏️ New task</h2>
         </div>
 
@@ -54,7 +54,7 @@
                     wire:model="title"
                     placeholder="What needs to be done?"
                     autofocus
-                    class="w-full rounded-xl border-0 bg-white px-4 py-3 text-base text-gray-900 shadow-sm ring-1 ring-gray-200 placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-500"
+                    class="w-full rounded-xl border-0 bg-white px-4 py-3 text-base text-gray-900 shadow-sm ring-1 ring-gray-200 placeholder:text-gray-400 focus:ring-2 focus:ring-primary-500"
                 />
                 @error('title')
                     <p class="mt-2 flex items-center gap-1 text-sm text-red-600">
@@ -68,7 +68,7 @@
                 <button
                     type="button"
                     @click="showDetails = !showDetails"
-                    class="flex items-center gap-1 text-sm font-medium text-indigo-600 hover:text-indigo-700"
+                    class="flex items-center gap-1 text-sm font-medium text-primary-600 hover:text-primary-700"
                 >
                     <svg class="size-4 transition-transform" :class="showDetails && 'rotate-90'" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
@@ -81,7 +81,7 @@
                         wire:model="description"
                         rows="2"
                         placeholder="Any extra notes..."
-                        class="w-full rounded-xl border-0 bg-white px-4 py-3 text-sm text-gray-900 shadow-sm ring-1 ring-gray-200 placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-500"
+                        class="w-full rounded-xl border-0 bg-white px-4 py-3 text-sm text-gray-900 shadow-sm ring-1 ring-gray-200 placeholder:text-gray-400 focus:ring-2 focus:ring-primary-500"
                     ></textarea>
                 </div>
             </div>
@@ -96,7 +96,7 @@
                             @class([
                                 'inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-all duration-150',
                                 'bg-white text-gray-700 ring-1 ring-gray-200 hover:ring-gray-300' => $priority !== $value,
-                                'bg-indigo-600 text-white shadow-md ring-2 ring-indigo-600 ring-offset-1' => $priority === $value,
+                                'bg-primary-600 text-white shadow-md ring-2 ring-primary-600 ring-offset-1' => $priority === $value,
                             ])
                         >
                             <span>{{ $meta['emoji'] }}</span>
@@ -109,7 +109,7 @@
             <button
                 type="submit"
                 wire:loading.attr="disabled"
-                class="flex w-full items-center justify-center gap-2 rounded-xl bg-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-md transition hover:bg-indigo-500 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-60"
+                class="flex w-full items-center justify-center gap-2 rounded-xl bg-primary-600 px-4 py-3 text-sm font-semibold text-white shadow-md transition hover:bg-primary-500 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 disabled:opacity-60"
             >
                 <span wire:loading.remove wire:target="addTodo">
                     <svg class="inline size-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
@@ -131,7 +131,7 @@
     {{-- Task list --}}
     <div class="relative">
         <div wire:loading.flex wire:target="toggle,delete,setFilter" class="absolute inset-0 z-10 hidden items-center justify-center rounded-2xl bg-white/60 backdrop-blur-[1px]">
-            <svg class="size-8 animate-spin text-indigo-500" fill="none" viewBox="0 0 24 24">
+            <svg class="size-8 animate-spin text-primary-500" fill="none" viewBox="0 0 24 24">
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
             </svg>
@@ -143,9 +143,9 @@
                     wire:key="todo-{{ $todo->id }}"
                     x-data="{ expanded: false }"
                     @class([
-                        'group relative overflow-hidden rounded-2xl border bg-white p-4 shadow-sm transition-all duration-200 hover:shadow-md',
+                        'group relative overflow-hidden rounded-2xl border bg-surface-elevated p-4 shadow-sm motion-safe-transition hover:shadow-md',
                         'border-gray-200' => ! $todo->completed,
-                        'border-gray-100 bg-gray-50/80' => $todo->completed,
+                        'border-gray-100' => $todo->completed,
                     ])
                 >
                     {{-- Priority accent bar --}}
@@ -165,8 +165,8 @@
                             aria-label="{{ $todo->completed ? 'Mark as active' : 'Mark as done' }}"
                             @class([
                                 'mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full border-2 transition-all duration-200',
-                                'border-gray-300 bg-white hover:border-indigo-400 hover:bg-indigo-50' => ! $todo->completed,
-                                'border-indigo-500 bg-indigo-500 text-white' => $todo->completed,
+                                'border-gray-300 bg-white hover:border-primary-400 hover:bg-primary-50' => ! $todo->completed,
+                                'border-primary-500 bg-primary-500 text-white' => $todo->completed,
                             ])
                         >
                             @if ($todo->completed)
@@ -180,8 +180,8 @@
                             <div class="flex flex-wrap items-center gap-2">
                                 <p @class([
                                     'text-base font-medium leading-snug',
-                                    'text-gray-400 line-through decoration-gray-300' => $todo->completed,
-                                    'text-gray-900' => ! $todo->completed,
+                                    'text-muted line-through decoration-gray-300' => $todo->completed,
+                                    'text-ink' => ! $todo->completed,
                                 ])>
                                     {{ $todo->title }}
                                 </p>
@@ -203,7 +203,7 @@
                                 <button
                                     type="button"
                                     @click="expanded = !expanded"
-                                    class="mt-1.5 flex items-center gap-1 text-xs font-medium text-indigo-600 hover:text-indigo-700"
+                                    class="mt-1.5 flex items-center gap-1 text-xs font-medium text-primary-600 hover:text-primary-700"
                                 >
                                     <svg class="size-3 transition-transform" :class="expanded && 'rotate-90'" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
@@ -233,7 +233,7 @@
                 </li>
             @empty
                 <li class="rounded-2xl border-2 border-dashed border-gray-200 bg-gray-50/50 px-6 py-12 text-center">
-                    <div class="mx-auto mb-4 flex size-16 items-center justify-center rounded-full bg-indigo-50 text-3xl">
+                    <div class="mx-auto mb-4 flex size-16 items-center justify-center rounded-full bg-primary-50 text-3xl">
                         @if ($filter === 'all')
                             📝
                         @elseif ($filter === 'active')

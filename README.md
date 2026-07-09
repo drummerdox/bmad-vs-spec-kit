@@ -24,7 +24,7 @@ open http://localhost:8081
 
 ```bash
 make test
-# 34 tests, all passing
+# 39 tests, all passing
 ```
 
 ## SDD Artifact Map
@@ -47,7 +47,15 @@ Full workflow: [docs/bmad/workflow.md](docs/bmad/workflow.md)
 - Toggle complete / active
 - Filter: All · Active · Done (with counts)
 - Delete with confirmation
-- 34 feature tests (auth + todos)
+- 39 feature tests (auth + todos + SEO)
+
+## Frontend Redesign (`002-frontend-redesign`)
+
+- **Electric Twilight + Cloud Dancer** design tokens (primary, accent, surface, ink, muted)
+- SEO-optimized marketing landing with Open Graph, Twitter cards, and JSON-LD
+- Shared UI components (`x-brand.logo`, `x-ui.button`, `x-ui.card`, `x-ui.input`)
+- Cohesive auth pages and authenticated app shell
+- Dynamic `/robots.txt` and `/sitemap.xml` routes
 
 ## Stack
 
@@ -69,6 +77,7 @@ learning_2/
 ├── .cursor/skills/speckit-*/     # Spec Kit agent skills
 ├── .specify/memory/              # Constitution
 ├── specs/001-todo-app/           # spec → plan → tasks
+├── specs/002-frontend-redesign/  # UI redesign + SEO
 ├── docker-compose.yml
 ├── docker/                       # Dockerfile, nginx
 ├── app/Livewire/TodoList.php

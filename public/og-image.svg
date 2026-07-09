@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Todo App">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4f46e5"/>
+      <stop offset="50%" style="stop-color:#6366f1"/>
+      <stop offset="100%" style="stop-color:#ec4899"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="200" cy="120" r="180" fill="rgba(255,255,255,0.08)"/>
+  <circle cx="1000" cy="500" r="220" fill="rgba(255,255,255,0.06)"/>
+  <rect x="120" y="180" width="72" height="72" rx="18" fill="rgba(255,255,255,0.2)"/>
+  <path d="M144 216 L168 240 L216 192" stroke="#fff" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="220" y="240" font-family="system-ui,sans-serif" font-size="72" font-weight="700" fill="#ffffff">Todo App</text>
+  <text x="120" y="320" font-family="system-ui,sans-serif" font-size="36" fill="rgba(255,255,255,0.9)">Organize your day. Stay focused.</text>
+</svg>

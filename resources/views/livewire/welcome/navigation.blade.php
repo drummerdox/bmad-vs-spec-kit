@@ -1,26 +1,17 @@
-<nav class="-mx-3 flex flex-1 justify-end">
+<nav class="flex items-center gap-2">
     @auth
-        <a
-            href="{{ url('/dashboard') }}"
-            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-        >
-            Dashboard
-        </a>
+        <x-ui.button variant="primary" size="sm" type="link" href="{{ route('todos') }}" wire:navigate>
+            My tasks
+        </x-ui.button>
     @else
-        <a
-            href="{{ route('login') }}"
-            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-        >
+        <x-ui.button variant="ghost" size="sm" type="link" href="{{ route('login') }}" wire:navigate>
             Log in
-        </a>
+        </x-ui.button>
 
         @if (Route::has('register'))
-            <a
-                href="{{ route('register') }}"
-                class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-            >
+            <x-ui.button variant="primary" size="sm" type="link" href="{{ route('register') }}" wire:navigate>
                 Register
-            </a>
+            </x-ui.button>
         @endif
     @endauth
 </nav>

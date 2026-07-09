@@ -7,8 +7,8 @@
 
         <x-seo.meta
             :title="$seoTitle ?? config('app.name', 'Todo App')"
-            :description="$seoDescription ?? 'Sign in or create an account to manage your personal todo list.'"
-            :suffix="isset($seoTitle)"
+            :description="$seoDescription ?? 'Organize your daily tasks with a free, personal todo app. Priorities, filters, and a clean interface — sign up in seconds.'"
+            :suffix="$seoSuffix ?? isset($seoTitle)"
         />
 
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -18,15 +18,9 @@
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased text-ink bg-surface-mesh">
-        <div class="flex min-h-screen flex-col items-center justify-center px-4 py-10 sm:px-6">
-            <div class="mb-8">
-                <x-brand.logo size="lg" />
-            </div>
+    <body class="font-sans antialiased text-ink bg-surface">
+        @yield('content')
 
-            <x-ui.card class="w-full max-w-md">
-                {{ $slot }}
-            </x-ui.card>
-        </div>
+        <x-seo.json-ld-app />
     </body>
 </html>
