@@ -4,31 +4,7 @@ A **learning demo** for **Spec-Driven Development (SDD)** using [GitHub Spec Kit
 
 **TALL** = **T**ailwind CSS · **A**lpine.js · **L**aravel · **L**ivewire
 
-## What This Teaches
-
-1. **Spec Kit flow** — constitution → spec → plan → tasks → implement  
-2. **Docker-first** — Nginx, PHP-FPM, MySQL via Compose  
-3. **Auth base flow** — register, login, logout (Laravel Breeze Livewire)  
-4. **TALL todo CRUD** — Livewire component, user-scoped todos  
-5. **Feature tests** — auth + todo acceptance scenarios  
-
-## SDD Artifact Map
-
-| Step | Phase | Spec Kit | Output |
-|------|-------|----------|--------|
-| 0 | Principles | `/speckit.constitution` | `.specify/memory/constitution.md` |
-| 1 | Requirements | `/speckit.specify` | `specs/001-todo-app/spec.md` |
-| 2 | Architecture | `/speckit.plan` | `specs/001-todo-app/plan.md` |
-| 3 | Checklist | `/speckit.tasks` | `specs/001-todo-app/tasks.md` |
-| 4 | Docker | Implement T001–T007 | `docker-compose.yml`, `docker/` |
-| 5 | Install | Implement T008–T016 | Laravel + Breeze + Livewire |
-| 6 | Auth | Implement T017–T023 | Register / login / protected `/todos` |
-| 7 | Todos | Implement T024–T043 | Livewire todo-list |
-| 8 | Tests | Implement T044–T054 | `tests/Feature/*` |
-
-Full workflow: [docs/bmad/workflow.md](docs/bmad/workflow.md)
-
-## Quick Start (after implementation)
+## Quick Start
 
 ```bash
 cd learning_2
@@ -37,51 +13,54 @@ cp .env.example .env
 make up
 make artisan cmd="key:generate"
 make artisan cmd="migrate"
-make npm cmd="install && npm run build"
 
-open http://localhost:8080
+make build   # npm install + vite build via node container
+
+open http://localhost:8081
+# Register → auto-redirect to /todos
 ```
 
 ### Run Tests
 
 ```bash
 make test
-# or
-docker compose exec app php artisan test --filter=TodoListTest
+# 34 tests, all passing
 ```
 
-## Cursor / Spec Kit Commands
+## SDD Artifact Map
 
-Skills in `.cursor/skills/`:
+| Phase | Spec Kit | Output |
+|-------|----------|--------|
+| 0 | `/speckit.constitution` | `.specify/memory/constitution.md` |
+| 1 | `/speckit.specify` | `specs/001-todo-app/spec.md` |
+| 2 | `/speckit.plan` | `specs/001-todo-app/plan.md` |
+| 3 | `/speckit.tasks` | `specs/001-todo-app/tasks.md` |
+| 4 | `/speckit.implement` | Application code |
 
-- `/speckit.constitution` — project principles  
-- `/speckit.specify` — feature requirements  
-- `/speckit.plan` — technical plan  
-- `/speckit.tasks` — task breakdown  
-- `/speckit.implement` — build from tasks  
+Full workflow: [docs/bmad/workflow.md](docs/bmad/workflow.md)
 
-## Features (from spec.md)
+## Features
 
-- Register, login, logout (Breeze Livewire)  
-- User-scoped todos  
-- Add todos (title, description, priority)  
-- Toggle complete / active  
-- Filter: All · Active · Done  
-- Delete with confirmation  
-- Feature tests for auth + todos  
+- Register, login, logout (Laravel Breeze Livewire)
+- User-scoped todos (`user_id` FK)
+- Add todos (title, description, priority)
+- Toggle complete / active
+- Filter: All · Active · Done (with counts)
+- Delete with confirmation
+- 34 feature tests (auth + todos)
 
 ## Stack
 
 | Layer | Technology |
 |-------|------------|
 | Runtime | Docker Compose (Nginx, PHP 8.3, MySQL 8) |
-| Backend | Laravel 12, PHP 8.3+ |
-| Auth | Laravel Breeze (Livewire) |
+| Backend | Laravel 13, PHP 8.3+ |
+| Auth | Laravel Breeze (Livewire + Volt) |
 | Reactive UI | Livewire 3 |
 | CSS | Tailwind CSS 4 + Vite |
 | JS | Alpine.js |
-| Database | MySQL 8 |
-| Tests | PHPUnit feature tests |
+| Database | MySQL 8 (Docker) |
+| Tests | PHPUnit (SQLite in-memory for tests) |
 
 ## Project Layout
 
@@ -90,22 +69,23 @@ learning_2/
 ├── .cursor/skills/speckit-*/     # Spec Kit agent skills
 ├── .specify/memory/              # Constitution
 ├── specs/001-todo-app/           # spec → plan → tasks
-├── docs/bmad/                    # BMAD workflow
-├── docker/                       # Dockerfile, nginx config
 ├── docker-compose.yml
-├── Makefile
-└── (Laravel app after implement)
+├── docker/                       # Dockerfile, nginx
+├── app/Livewire/TodoList.php
+├── resources/views/livewire/todo-list.blade.php
+└── tests/Feature/TodoListTest.php
 ```
 
-## Next Step
+## Makefile Commands
 
-Artifacts are ready. Run in Cursor:
-
-```
-/speckit.implement
-```
-
-Or: *"Act as BMAD Developer, execute specs/001-todo-app/tasks.md starting Phase 1."*
+| Command | Description |
+|---------|-------------|
+| `make up` | Start Docker services |
+| `make down` | Stop containers |
+| `make shell` | Bash into PHP container |
+| `make artisan cmd="migrate"` | Run Artisan |
+| `make test` | Run PHPUnit |
+| `make build` | npm install + vite build |
 
 ## References
 
