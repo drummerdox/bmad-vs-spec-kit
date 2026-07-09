@@ -19,10 +19,10 @@ test:
 	docker compose exec app php artisan test $(filter-out $@,$(MAKECMDGOALS))
 
 npm:
-	docker compose run --rm node sh -c "$(cmd)"
+	docker compose --profile dev run --rm node sh -c "$(cmd)"
 
 build:
-	docker compose run --rm node sh -c "npm install && npm run build"
+	docker compose --profile dev run --rm node sh -c "npm install && npm run build"
 
 dev:
 	docker compose --profile dev up -d
