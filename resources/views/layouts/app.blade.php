@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" @class(['dark' => ($theme ?? 'light') === 'dark'])>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+
+        @include('partials.theme-init')
 
         <x-seo.meta
             :title="$seoTitle ?? 'My Tasks'"
@@ -23,7 +25,7 @@
             <livewire:layout.navigation />
 
             @if (isset($header))
-                <header class="border-b border-gray-100 bg-surface-elevated/80 backdrop-blur-sm">
+                <header class="border-b border-border-subtle bg-surface-elevated/80 backdrop-blur-sm">
                     <div class="mx-auto max-w-7xl px-4 py-5 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>

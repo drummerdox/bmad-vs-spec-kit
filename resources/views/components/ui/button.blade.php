@@ -5,7 +5,7 @@
 ])
 
 @php
-    $base = 'inline-flex items-center justify-center font-semibold rounded-xl motion-safe-transition focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
+    $base = 'inline-flex items-center justify-center font-semibold rounded-xl motion-safe-transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-surface disabled:opacity-50 disabled:cursor-not-allowed';
 
     $sizes = [
         'sm' => 'px-3 py-1.5 text-sm',
@@ -14,9 +14,9 @@
     ];
 
     $variants = [
-        'primary' => 'bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500 shadow-primary-glow',
-        'secondary' => 'bg-white text-ink border border-gray-200 hover:bg-gray-50 focus:ring-primary-500',
-        'ghost' => 'text-muted hover:text-ink hover:bg-black/5 focus:ring-primary-500',
+        'primary' => 'bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500 shadow-primary-glow dark:text-[#272822]',
+        'secondary' => 'bg-surface-elevated text-ink border border-border hover:bg-surface focus:ring-primary-500',
+        'ghost' => 'text-muted hover:text-ink hover:bg-black/5 dark:hover:bg-white/5 focus:ring-primary-500',
         'accent' => 'bg-accent-500 text-white hover:bg-accent-600 focus:ring-accent-500 shadow-accent-glow',
     ];
 

@@ -3,6 +3,8 @@ import forms from '@tailwindcss/forms';
 
 /** @type {import('tailwindcss').Config} */
 export default {
+    darkMode: 'class',
+
     content: [
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './storage/framework/views/*.php',
@@ -16,26 +18,30 @@ export default {
             },
             colors: {
                 surface: {
-                    DEFAULT: '#f9f8f5',
-                    elevated: '#ffffff',
+                    DEFAULT: 'var(--color-surface)',
+                    elevated: 'var(--color-surface-elevated)',
                 },
-                muted: '#6b6560',
-                ink: '#18181b',
+                muted: 'var(--color-muted)',
+                ink: 'var(--color-ink)',
+                border: {
+                    DEFAULT: 'var(--color-border)',
+                    subtle: 'var(--color-border-subtle)',
+                },
                 primary: {
-                    50: '#f0efff',
-                    100: '#e0deff',
-                    500: '#6366f1',
-                    600: '#4f46e5',
-                    700: '#4338ca',
+                    50: 'var(--color-primary-50)',
+                    100: 'var(--color-primary-100)',
+                    500: 'var(--color-primary-500)',
+                    600: 'var(--color-primary-600)',
+                    700: 'var(--color-primary-700)',
                 },
                 secondary: {
-                    400: '#22d3ee',
-                    500: '#06b6d4',
+                    400: 'var(--color-secondary-400)',
+                    500: 'var(--color-secondary-500)',
                 },
                 accent: {
-                    400: '#f472b6',
-                    500: '#ec4899',
-                    600: '#db2777',
+                    400: 'var(--color-accent-400)',
+                    500: 'var(--color-accent-500)',
+                    600: 'var(--color-accent-600)',
                 },
             },
             boxShadow: {

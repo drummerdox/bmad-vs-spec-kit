@@ -8,6 +8,6 @@
     ];
 @endphp
 
-<div {{ $attributes->merge(['class' => 'bg-surface-elevated rounded-2xl border border-gray-100 shadow-sm ' . ($paddings[$padding] ?? $paddings['md'])]) }}>
+<div {{ $attributes->merge(['class' => 'bg-surface-elevated rounded-2xl border border-border-subtle shadow-sm ' . ($paddings[$padding] ?? $paddings['md'])]) }}>
     {{ $slot }}
 </div>

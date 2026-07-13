@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Support\Theme;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -20,6 +21,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        View::composer(['layouts.app', 'livewire.layout.navigation'], function ($view) {
+            $view->with('theme', Theme::resolve(request()->cookie(Theme::COOKIE)));
+        });
+
         View::composer('layouts.guest', function ($view) {
             $pages = [
                 'login' => [
